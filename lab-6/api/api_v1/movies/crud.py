@@ -143,7 +143,7 @@ class StorageMovie:
 
         if "title" in update_data or "year" in update_data:
             slug_title = current_movie.title.lower().replace("'", "").replace(" ", "-")
-            new_slug = f"{slug_title}-{movie_in.year}"
+            new_slug = f"{slug_title}-{current_movie.year}"
 
             if new_slug != current_movie.slug:
                 if new_slug in cls._storage:

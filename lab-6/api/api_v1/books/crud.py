@@ -118,7 +118,7 @@ class StorageBooks:
 
         if new_slug != current_book.slug and new_slug in cls._storage:
             raise HTTPException(
-                status_code=status.HTTP_404_BAD_REQUEST,
+                status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"Book with slug '{new_slug}' already exists",
             )
 
@@ -144,7 +144,7 @@ class StorageBooks:
 
         if "title" in update_data or "year" in update_data:
             slug_title = current_book.title.lower().replace("'", "").replace(" ", "-")
-            new_slug = f"{slug_title}{current_book.year}"
+            new_slug = f"{slug_title}-{current_book.year}"
 
             if new_slug != current_book.slug:
                 if new_slug in cls._storage:
